@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To Swabrah 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: url('Flo1.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: #030202;
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .backdrop-card {
+      backdrop-filter: blur(12px) brightness(0.9);
+      background-color: rgba(222, 172, 198, 0.853);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 90%;
+      margin: 5rem auto 2rem;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      animation: fadeIn 1.5s ease;
+    }
+    .backdrop-card h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: #000000;
+      margin-bottom: 1rem;
+    }
+    .backdrop-card p {
+      font-size: 1.2rem;
+      color: #050303;
+    }
+    .swabrah-image {
+      width: 180px;
+      height: 180px;
+      border-radius: 20px;
+      object-fit: cover;
+      margin: 1.5rem auto 0;
+      display: block;
+      border: 4px solid white;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    }
+    .my-image {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid white;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      z-index: 2;
+    }
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: floatUp 6s linear infinite;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+    }
+    footer {
+      position: relative;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #000000;
+      margin-bottom: 1rem;
+      z-index: 2;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .surprise-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 0.7rem 1.2rem;
+      border: none;
+      background-color: #ff7eb3;
+      color: rgb(255, 253, 253);
+      font-size: 1rem;
+      border-radius: 30px;
+      box-shadow: 0 4px 15px rgba(255,126,179,0.4);
+      cursor: pointer;
+      z-index: 3;
+      animation: fadeIn 2s ease;
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background-color: rgba(255, 255, 255, 0.95);
+      color: #000000;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      z-index: 999;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      transition: transform 0.4s ease;
+    }
+    .popup.show {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .popup h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      color: #ff65a3;
+      margin-bottom: 1rem;
+    }
+    .popup p {
+      font-size: 1.1rem;
+    }
+    .close-popup {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #fb6f92;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 600px) {
+      .backdrop-card h1 {
+        font-size: 2.3rem;
+      }
+      .swabrah-image {
+        width: 250px;
+        height: 200px;
+      }
+      .my-image {
+        width: 90px;
+        height: 90px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="love.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="hearts"></div>
+
+  <button class="surprise-btn" onclick="showSurprise()">💝 Surprise</button>
+
+  <div class="popup" id="popup">
+    <h2>You're So Special, Swabs 💞</h2>
+    <p>
+      Just wanted to remind you how much you mean to me.
+      You bring beauty and light in ma life whenever i see you.
+      Here's to us and to a future filled with love and laughter! 💗
+    </p>
+    <button class="close-popup" onclick="hideSurprise()">Close</button>
+  </div>
+
+  <div class="backdrop-card">
+    <h1>Dear Mummy Yakirah 💕</h1>
+    <p>
+      Thank you for being such a sweet and genuine Part of my Heart. Your kindness and smile light up my days.
+      I pray that our bond continues to grow into something even more beautiful. You mean a lot to me. 💖
+    </p>
+    <img src="b.jpg" alt="Swabrah" class="swabrah-image">
+  </div>
+
+  <img src="pro.jpg" alt="Tendo" class="my-image">
+
+  <footer>
+    Created with love by Daddy Yakirah 💘
+  </footer>
+
+  <script>
+    const heartContainer = document.querySelector('.hearts');
+    for (let i = 0; i < 40; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      heart.style.backgroundColor = ['#ff7eb3', '#ff65a3', '#fb6f92', '#ffc2d1'][Math.floor(Math.random() * 4)];
+      heartContainer.appendChild(heart);
+    }
+
+    function showSurprise() {
+      document.getElementById('popup').classList.add('show');
+    }
+
+    function hideSurprise() {
+      document.getElementById('popup').classList.remove('show');
+    }
+  </script>
+</body>
+</html>
