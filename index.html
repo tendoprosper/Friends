@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TendoS Tech - Classic Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
@@ -11,26 +12,106 @@
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
     }
+
     body {
       background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
       color: white;
-      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
     }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+
+    .animated-shapes {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -2;
+      top: 0;
+      left: 0;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1), rgba(255,255,255,0));
+      animation: float 8s infinite ease-in-out;
+    }
+
+    .shape1 {
+      width: 200px;
+      height: 200px;
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .shape2 {
+      width: 300px;
+      height: 300px;
+      bottom: 10%;
+      right: 15%;
+      animation-delay: 2s;
+    }
+
+    .shape3 {
+      width: 150px;
+      height: 150px;
+      top: 50%;
+      left: 50%;
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.05); }
+    }
+
+    /* Animations */
+    @keyframes fallIn {
+      0% { transform: translateY(-100px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    header, .hero {
+      animation: fallIn 0.8s ease-out both;
+    }
+
+    .services, .projects, .contact, .mine {
+      animation: fadeIn 0.9s ease-out both;
+    }
+
     header {
       text-align: center;
       margin-bottom: 40px;
     }
+
     header h1 {
       font-size: 3rem;
       color: #010000;
       text-shadow: 0 0 20px #ffffff;
-      text-decoration:overline;
+      text-decoration: overline;
       margin-bottom: 10px;
     }
+
     header p {
       font-size: 1.2rem;
       color: #ddd;
     }
+
     .download-btn {
       margin-top: 15px;
       display: inline-block;
@@ -42,11 +123,13 @@
       text-decoration: none;
       transition: 0.3s;
     }
+
     .download-btn:hover {
       background: red;
       color: #fff;
       transform: scale(1.05);
     }
+
     .hero {
       display: flex;
       flex-direction: column;
@@ -54,11 +137,11 @@
       text-align: center;
       padding: 50px 20px;
       background-image: url('https://cdn.pixabay.com/photo/2015/02/03/12/36/keyboard-622456_1280.jpg');
-      background-attachment: scroll; /* Fixed bg sometimes buggy on mobile */
       border-radius: 20px;
       margin-bottom: 40px;
       backdrop-filter: blur(10px);
     }
+
     .hero img {
       border-radius: 50%;
       width: 160px;
@@ -67,48 +150,68 @@
       border: 4px solid #ffd700;
       box-shadow: 0 0 15px #ffd700;
     }
+
     .hero h2 {
       font-size: 2.5rem;
       color: #fff;
     }
+
     .hero p {
       font-size: 1rem;
       color: #ccc;
     }
+
     .services, .projects, .contact {
       margin-bottom: 40px;
     }
+
     h2.section-title {
       font-size: 2rem;
       color: #ffd700;
       margin-bottom: 20px;
     }
+
     ul.service-list {
       list-style: none;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 15px;
     }
+
     ul.service-list li {
       background: #111147;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgb(0, 255, 64);
       transition: 0.3s;
+      animation: fadeIn 0.6s ease forwards;
+      opacity: 0;
     }
+
     ul.service-list li:hover {
       transform: translateY(-5px);
     }
+
+    ul.service-list li:nth-child(1) { animation-delay: 0.3s; }
+    ul.service-list li:nth-child(2) { animation-delay: 0.4s; }
+    ul.service-list li:nth-child(3) { animation-delay: 0.6s; }
+    ul.service-list li:nth-child(4) { animation-delay: 0.8s; }
+    ul.service-list li:nth-child(5) { animation-delay: 0.10s; }
+    ul.service-list li:nth-child(6) { animation-delay: 0.12s; }
+    ul.service-list li:nth-child(7) { animation-delay: 0.14s; }
+
     .contact form {
       display: flex;
       flex-direction: column;
       gap: 15px;
     }
+
     .contact input, .contact textarea {
       padding: 10px;
       border-radius: 8px;
       border: none;
     }
+
     .contact button {
       background: #ffd700;
       color: #000;
@@ -119,28 +222,41 @@
       cursor: pointer;
       transition: 0.3s;
     }
+
     .contact button:hover {
       background: red;
       color: #fff;
       transform: scale(1.03);
     }
+
     footer {
       text-align: center;
       font-size: 0.9rem;
       color: #aaa;
     }
+
     @media (max-width: 600px) {
       .hero h2 {
         font-size: 1.8rem;
       }
     }
-    .mine{
-      align-items: center;
 
+    .mine {
+      text-align: center;
     }
   </style>
 </head>
 <body>
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
+  <!-- Animated Background Shapes -->
+  <div class="animated-shapes">
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+  </div>
+
   <header>
     <h1>TendoS Tech</h1>
     <p>Crafting the web experiences of tomorrow</p>
@@ -151,7 +267,6 @@
     <img src="2tj.png" alt="Tendo's photo" />
     <h2>Hi, I’m Tendo</h2>
     <p>A passionate web designer and developer from Uganda. I create stunning, functional websites that leave a mark.</p>
-    
   </section>
 
   <section class="services">
@@ -176,10 +291,12 @@
       <li>Birthday Greeting Pages</li>
     </ul>
   </section>
+
   <div class="mine">
-  <h3>We Build The Future</h3>
-  <p>Your idea, our technology.</p>
-</div>
+    <h3>We Build The Future</h3>
+    <p>Your idea, our technology.</p>
+  </div>
+
   <section class="contact">
     <h2 class="section-title">Contact Me</h2>
     <form action="https://formspree.io/f/xqapnljg" method="POST">
@@ -193,5 +310,40 @@
   <footer>
     <p>&copy; 2025 TendoS Tech. Designed with 💛 in Uganda.</p>
   </footer>
+
+  <!-- particles.js library -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 70
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "shape": {
+          "type": "circle"
+        },
+        "opacity": {
+          "value": 0.3
+        },
+        "size": {
+          "value": 3
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 120,
+          "color": "#ffffff",
+          "opacity": 0.2,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 1.5
+        }
+      }
+    });
+  </script>
 </body>
 </html>
