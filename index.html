@@ -1,238 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>To Swabrah 💖</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+  <title>TendoS Tech - Classic Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
     body {
-      font-family: 'Outfit', sans-serif;
-      background: url('Flo1.jpeg') no-repeat center center fixed;
-      background-size: cover;
-      color: #030202;
-      position: relative;
-      min-height: 100vh;
-      overflow-x: hidden;
+      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+      color: white;
+      padding: 20px;
     }
-    .backdrop-card {
-      backdrop-filter: blur(12px) brightness(0.9);
-      background-color: rgba(222, 172, 198, 0.853);
-      border-radius: 20px;
-      padding: 2rem;
-      max-width: 90%;
-      margin: 5rem auto 2rem;
+    header {
       text-align: center;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      animation: fadeIn 1.5s ease;
+      margin-bottom: 40px;
     }
-    .backdrop-card h1 {
-      font-family: 'Great Vibes', cursive;
+    header h1 {
       font-size: 3rem;
-      color: #000000;
-      margin-bottom: 1rem;
+      color: #010000;
+      text-shadow: 0 0 20px #ffffff;
+      text-decoration:overline;
+      margin-bottom: 10px;
     }
-    .backdrop-card p {
+    header p {
       font-size: 1.2rem;
-      color: #050303;
+      color: #ddd;
     }
-    .swabrah-image {
-      width: 180px;
-      height: 180px;
+    .download-btn {
+      margin-top: 15px;
+      display: inline-block;
+      background: #ffd700;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .download-btn:hover {
+      background: red;
+      color: #fff;
+      transform: scale(1.05);
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 50px 20px;
+      background-image: url('https://cdn.pixabay.com/photo/2015/02/03/12/36/keyboard-622456_1280.jpg');
+      background-attachment: scroll; /* Fixed bg sometimes buggy on mobile */
       border-radius: 20px;
-      object-fit: cover;
-      margin: 1.5rem auto 0;
-      display: block;
-      border: 4px solid white;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+      margin-bottom: 40px;
+      backdrop-filter: blur(10px);
     }
-    .my-image {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      width: 60px;
-      height: 60px;
+    .hero img {
       border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid white;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-      z-index: 2;
+      width: 160px;
+      height: 160px;
+      margin-bottom: 20px;
+      border: 4px solid #ffd700;
+      box-shadow: 0 0 15px #ffd700;
     }
-    .hearts {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 1;
+    .hero h2 {
+      font-size: 2.5rem;
+      color: #fff;
     }
-    .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background-color: pink;
-      transform: rotate(45deg);
-      animation: floatUp 6s linear infinite;
+    .hero p {
+      font-size: 1rem;
+      color: #ccc;
     }
-    .heart::before,
-    .heart::after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background-color: pink;
-      border-radius: 50%;
+    .services, .projects, .contact {
+      margin-bottom: 40px;
     }
-    .heart::before {
-      top: -10px;
-      left: 0;
+    h2.section-title {
+      font-size: 2rem;
+      color: #ffd700;
+      margin-bottom: 20px;
     }
-    .heart::after {
-      left: -10px;
-      top: 0;
+    ul.service-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
     }
-    @keyframes floatUp {
-      0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
-      100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+    ul.service-list li {
+      background: #111147;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgb(0, 255, 64);
+      transition: 0.3s;
+    }
+    ul.service-list li:hover {
+      transform: translateY(-5px);
+    }
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .contact input, .contact textarea {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+    .contact button {
+      background: #ffd700;
+      color: #000;
+      padding: 10px;
+      border: none;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .contact button:hover {
+      background: red;
+      color: #fff;
+      transform: scale(1.03);
     }
     footer {
-      position: relative;
       text-align: center;
       font-size: 0.9rem;
-      color: #000000;
-      margin-bottom: 1rem;
-      z-index: 2;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .surprise-btn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      padding: 0.7rem 1.2rem;
-      border: none;
-      background-color: #ff7eb3;
-      color: rgb(255, 253, 253);
-      font-size: 1rem;
-      border-radius: 30px;
-      box-shadow: 0 4px 15px rgba(255,126,179,0.4);
-      cursor: pointer;
-      z-index: 3;
-      animation: fadeIn 2s ease;
-    }
-    .popup {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      background-color: rgba(255, 255, 255, 0.95);
-      color: #000000;
-      padding: 2rem;
-      border-radius: 15px;
-      text-align: center;
-      z-index: 999;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      transition: transform 0.4s ease;
-    }
-    .popup.show {
-      transform: translate(-50%, -50%) scale(1);
-    }
-    .popup h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.5rem;
-      color: #ff65a3;
-      margin-bottom: 1rem;
-    }
-    .popup p {
-      font-size: 1.1rem;
-    }
-    .close-popup {
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      background-color: #fb6f92;
-      border: none;
-      border-radius: 10px;
-      color: white;
-      cursor: pointer;
+      color: #aaa;
     }
     @media (max-width: 600px) {
-      .backdrop-card h1 {
-        font-size: 2.3rem;
+      .hero h2 {
+        font-size: 1.8rem;
       }
-      .swabrah-image {
-        width: 250px;
-        height: 200px;
-      }
-      .my-image {
-        width: 90px;
-        height: 90px;
-      }
+    }
+    .mine{
+      align-items: center;
+
     }
   </style>
 </head>
 <body>
-  <audio autoplay loop>
-    <source src="love.mp3" type="audio/mpeg">
-  </audio>
+  <header>
+    <h1>TendoS Tech</h1>
+    <p>Crafting the web experiences of tomorrow</p>
+    <a href="cv.pdf" class="download-btn">Download CV</a>
+  </header>
+  
+  <section class="hero">
+    <img src="2tj.png" alt="Tendo's photo" />
+    <h2>Hi, I’m Tendo</h2>
+    <p>A passionate web designer and developer from Uganda. I create stunning, functional websites that leave a mark.</p>
+    
+  </section>
 
-  <div class="hearts"></div>
+  <section class="services">
+    <h2 class="section-title">Services</h2>
+    <ul class="service-list">
+      <li>Website Design</li>
+      <li>Responsive Development</li>
+      <li>E-commerce Stores</li>
+      <li>SEO Optimization</li>
+      <li>Portfolio & Resume Sites</li>
+      <li>Interactive UI/UX</li>
+      <li>Graphics</li>
+    </ul>
+  </section>
 
-  <button class="surprise-btn" onclick="showSurprise()">💝 Surprise</button>
-
-  <div class="popup" id="popup">
-    <h2>You're So Special, Swabs 💞</h2>
-    <p>
-      Just wanted to remind you how much you mean to me.
-      You bring beauty and light in ma life whenever i see you.
-      Here's to us and to a future filled with love and laughter! 💗
-    </p>
-    <button class="close-popup" onclick="hideSurprise()">Close</button>
-  </div>
-
-  <div class="backdrop-card">
-    <h1>Dear Mummy Yakirah 💕</h1>
-    <p>
-      Thank you for being such a sweet and genuine Part of my Heart. Your kindness and smile light up my days.
-      I pray that our bond continues to grow into something even more beautiful. You mean a lot to me. 💖
-    </p>
-    <img src="b.jpg" alt="Swabrah" class="swabrah-image">
-  </div>
-
-  <img src="pro.jpg" alt="Tendo" class="my-image">
+  <section class="projects">
+    <h2 class="section-title">Featured Projects</h2>
+    <ul class="service-list">
+      <li>Prom Network Website</li>
+      <li>The Eagle by Richie 256</li>
+      <li>School Results System</li>
+      <li>Birthday Greeting Pages</li>
+    </ul>
+  </section>
+  <div class="mine">
+  <h3>We Build The Future</h3>
+  <p>Your idea, our technology.</p>
+</div>
+  <section class="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <form action="https://formspree.io/f/xqapnljg" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
 
   <footer>
-    Created with love by Daddy Yakirah 💘
+    <p>&copy; 2025 TendoS Tech. Designed with 💛 in Uganda.</p>
   </footer>
-
-  <script>
-    const heartContainer = document.querySelector('.hearts');
-    for (let i = 0; i < 40; i++) {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDelay = Math.random() * 5 + 's';
-      heart.style.backgroundColor = ['#ff7eb3', '#ff65a3', '#fb6f92', '#ffc2d1'][Math.floor(Math.random() * 4)];
-      heartContainer.appendChild(heart);
-    }
-
-    function showSurprise() {
-      document.getElementById('popup').classList.add('show');
-    }
-
-    function hideSurprise() {
-      document.getElementById('popup').classList.remove('show');
-    }
-  </script>
 </body>
 </html>
