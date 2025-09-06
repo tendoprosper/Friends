@@ -1,348 +1,351 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TendoS Tech - Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Swabs — Tendo</title>
+  <meta name="description" content="A memory storage website for Swabs and Tendo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+    :root{
+      --bg:#0b0c10;          /* deep night */
+      --card:#12141b;        /* soft dark */
+      --accent:#ff4d6d;      /* romantic pink */
+      --accent-2:#ffd6e0;    /* soft blush */
+      --text:#f6f7fb;        /* near-white */
+      --muted:#a9adbd;       /* gentle gray */
+      --gold:#ffd166;        /* highlight */
+    }
+    * { box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0; font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+      color:var(--text); background:radial-gradient(1200px 600px at 10% -10%, #241a21, transparent),
+                         radial-gradient(900px 500px at 90% 10%, #1a1f2b, transparent),
+                         linear-gradient(180deg, #0b0c10, #0b0c10);
+      overflow-x:hidden;
+    }
+    a{ color:inherit }
+
+    /* Floating background hearts */
+    .heart{ position:fixed; width:10px; height:10px; pointer-events:none; transform:translate(-50%, -50%) rotate(45deg); }
+    .heart::before,.heart::after{ content:""; position:absolute; width:10px; height:10px; background:var(--accent); border-radius:50%; }
+    .heart::before{ left:-5px }
+    .heart::after{ top:-5px }
+
+    /* Navbar */
+    .nav{
+      position:fixed; top:0; left:0; right:0; z-index:50;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 20px; backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(180deg, rgba(18,20,27,.85), rgba(18,20,27,.45) 60%, transparent);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .brand{ font-weight:800; letter-spacing:.5px }
+    .brand .dot{ color:var(--accent) }
+    .nav .btn{
+      border:1px solid rgba(255,255,255,.12); color:var(--text); background:#141722;
+      padding:8px 14px; border-radius:999px; cursor:pointer; font-weight:600;
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .nav .btn:hover{ transform:translateY(-1px); box-shadow:0 8px 20px rgba(255,77,109,.15); background:#181c29 }
+
+    /* Hero */
+    .hero{
+      min-height:92vh; display:grid; place-items:center; text-align:center; padding:120px 20px 80px; position:relative;
+    }
+    .sparkle{
+      position:absolute; inset:0; background:radial-gradient(800px 400px at 50% 0%, rgba(255,77,109,.13), transparent 50%),
+                         radial-gradient(500px 300px at 10% 40%, rgba(255,209,102,.08), transparent 50%),
+                         radial-gradient(600px 400px at 90% 40%, rgba(128,90,213,.10), transparent 55%);
+      filter:blur(20px); pointer-events:none; z-index:0;
+    }
+    .hero h1{ font-size:clamp(28px, 5.5vw, 64px); margin:0 0 12px; line-height:1.05; z-index:1 }
+    .hero p{ color:var(--muted); font-size:clamp(14px, 2.3vw, 18px); margin:0 0 24px; z-index:1 }
+    .glow{
+      background:linear-gradient(90deg, var(--accent), #b25cff, var(--gold));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow: 0 0 20px rgba(255,77,109,.15);
+    }
+    .cta{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap }
+    .primary,.secondary{
+      padding:12px 18px; border-radius:14px; border:1px solid rgba(255,255,255,.08); cursor:pointer; font-weight:700;
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .primary{ background:linear-gradient(180deg, #ff4d6d, #ff2d55); color:white; box-shadow:0 12px 30px rgba(255,77,109,.25) }
+    .primary:hover{ transform:translateY(-2px) }
+    .secondary{ background:#141722; color:var(--text) }
+    .secondary:hover{ background:#181c29; transform:translateY(-2px) }
+
+    /* Sections */
+    section{ padding:80px 20px; max-width:1060px; margin:0 auto }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08); border-radius:22px; padding:24px; box-shadow:0 10px 40px rgba(0,0,0,.35);
     }
 
-    body {
-      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
-      color: white;
-      overflow-x: hidden;
-      position: relative;
-    }
+    /* Reveal message */
+    .reveal{ display:grid; gap:14px; place-items:center; text-align:center }
+    .reveal h2{ margin:0 0 6px }
+    .scramble{ font-weight:800; font-size:clamp(18px, 2.8vw, 24px); letter-spacing:.4px }
 
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      top: 0;
-      left: 0;
+    /* Gallery */
+    .grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:14px }
+    .g-item{ grid-column:span 12; border-radius:18px; overflow:hidden; position:relative; border:1px solid rgba(255,255,255,.08) }
+    .g-item img{ width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/3; filter:saturate(1.08) contrast(1.02) }
+    @media(min-width:720px){
+      .g-item{ grid-column:span 4 }
+      .g-item.tall{ grid-row:span 2; aspect-ratio:auto }
+      .g-item.wide{ grid-column:span 8 }
+      .g-item img.tall{ aspect-ratio:3/4 }
+      .g-item img.wide{ aspect-ratio:16/9 }
     }
+    .tag{ position:absolute; left:12px; top:12px; background:rgba(0,0,0,.45); padding:6px 10px; border-radius:999px; font-size:12px; border:1px solid rgba(255,255,255,.12) }
 
-    .animated-shapes {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: -2;
-      top: 0;
-      left: 0;
-    }
+    /* Countdown */
+    .countdown{ display:grid; grid-template-columns:repeat(4, 1fr); gap:10px }
+    .unit{ background:#12141b; border:1px solid rgb(104, 227, 4); padding:16px; border-radius:16px; display:grid; place-items:center }
+    .num{ font-size:32px; font-weight:800 }
+    .label{ color:var(--muted); font-size:12px }
+    
 
-    .shape {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1), rgba(255,255,255,0));
-      animation: float 8s infinite ease-in-out;
-    }
+    /* Footer */
+    footer{ padding:40px 20px 80px; text-align:center; color:var(--muted) }
 
-    .shape1 {
-      width: 200px;
-      height: 200px;
-      top: 20%;
-      left: 10%;
-      animation-delay: 0s;
-    }
+    /* Modal */
+    .modal{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.55); backdrop-filter:blur(6px); z-index:60 }
+    .modal.active{ display:flex }
+    .modal .panel{ width:min(720px, 92vw); background:var(--card); border:1px solid rgba(255,255,255,.1); border-radius:22px; padding:24px; box-shadow:0 20px 50px rgba(0,0,0,.55) }
+    .modal .panel h3{ margin:0 0 6px }
+    .modal .panel p{ margin:0 0 14px; color:var(--muted) }
+    .modal .panel .close{ float:right; background:transparent; border:1px solid rgba(255,255,255,.15); color:var(--text); border-radius:12px; padding:6px 10px; cursor:pointer }
 
-    .shape2 {
-      width: 300px;
-      height: 300px;
-      bottom: 10%;
-      right: 15%;
-      animation-delay: 2s;
-    }
-
-    .shape3 {
-      width: 150px;
-      height: 150px;
-      top: 50%;
-      left: 50%;
-      animation-delay: 4s;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-20px) scale(1.05); }
-    }
-
-    /* Animations */
-    @keyframes fallIn {
-      0% { transform: translateY(-100px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: scale(0.95); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
-    header, .hero {
-      animation: fallIn 0.8s ease-out both;
-    }
-
-    .services, .projects, .contact, .mine {
-      animation: fadeIn 0.9s ease-out both;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    header h1 {
-      font-size: 3rem;
-      color: #010000;
-      text-shadow: 0 0 20px #ffffff;
-      text-decoration: overline;
-      margin-bottom: 10px;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      color: #ddd;
-    }
-
-    .download-btn {
-      margin-top: 15px;
-      display: inline-block;
-      background: #ffd700;
-      color: #000;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .download-btn:hover {
-      background: red;
-      color: #fff;
-      transform: scale(1.05);
-    }
-
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 50px 20px;
-      background-image: url('https://cdn.pixabay.com/photo/2015/02/03/12/36/keyboard-622456_1280.jpg');
-      border-radius: 20px;
-      margin-bottom: 40px;
-      backdrop-filter: blur(10px);
-    }
-
-    .hero img {
-      border-radius: 50%;
-      width: 160px;
-      height: 160px;
-      margin-bottom: 20px;
-      border: 4px solid #ffd700;
-      box-shadow: 0 0 15px #ffd700;
-    }
-
-    .hero h2 {
-      font-size: 2.5rem;
-      color: #fff;
-    }
-
-    .hero p {
-      font-size: 1rem;
-      color: #ccc;
-    }
-
-    .services, .projects, .contact {
-      margin-bottom: 40px;
-    }
-
-    h2.section-title {
-      font-size: 2rem;
-      color: #ffd700;
-      margin-bottom: 20px;
-    }
-
-    ul.service-list {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-    }
-
-    ul.service-list li {
-      background: #111147;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgb(0, 255, 64);
-      transition: 0.3s;
-      animation: fadeIn 0.6s ease forwards;
-      opacity: 0;
-    }
-
-    ul.service-list li:hover {
-      transform: translateY(-5px);
-    }
-
-    ul.service-list li:nth-child(1) { animation-delay: 0.3s; }
-    ul.service-list li:nth-child(2) { animation-delay: 0.4s; }
-    ul.service-list li:nth-child(3) { animation-delay: 0.6s; }
-    ul.service-list li:nth-child(4) { animation-delay: 0.8s; }
-    ul.service-list li:nth-child(5) { animation-delay: 0.10s; }
-    ul.service-list li:nth-child(6) { animation-delay: 0.12s; }
-    ul.service-list li:nth-child(7) { animation-delay: 0.14s; }
-
-    .contact form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .contact input, .contact textarea {
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-    }
-
-    .contact button {
-      background: #ffd700;
-      color: #000;
-      padding: 10px;
-      border: none;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .contact button:hover {
-      background: red;
-      color: #fff;
-      transform: scale(1.03);
-    }
-
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-
-    @media (max-width: 600px) {
-      .hero h2 {
-        font-size: 1.8rem;
-      }
-    }
-
-    .mine {
-      text-align: center;
-    }
+    /* Subtle animations */
+    @keyframes floatUp{ from{ transform:translateY(6px); opacity:.0 } to{ transform:translateY(0); opacity:1 } }
+    .fade-in{ animation:floatUp .8s ease both }
   </style>
 </head>
 <body>
-  <!-- Particle Background -->
-  <div id="particles-js"></div>
-
-  <!-- Animated Background Shapes -->
-  <div class="animated-shapes">
-    <div class="shape shape1"></div>
-    <div class="shape shape2"></div>
-    <div class="shape shape3"></div>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="brand">Mine <span class="glow">Swabs</span><span class="dot">♥</span></div>
+    <div>
+      <button class="btn" id="playBtn" aria-label="Play music">Play song</button>
+      <button class="btn" id="revealBtn" aria-label="Open surprise">Open message</button>
+    </div>
   </div>
 
-  <header>
-    <h1>TendoS Tech</h1>
-    <p>Crafting the web experiences of tomorrow</p>
-    <a href="cv.pdf" class="download-btn">Download CV</a>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="sparkle"></div>
+    <div class="fade-in" style="z-index:1">
+      <h1>Tendo <span class="glow">Swabs❤</span>, memories, memories, memories ✨</h1>
+      <p id="typewriter">Every beat of my heart spells your name…</p>
+      <div class="cta">
+        <button class="primary" id="spawnHearts">Tap for hearts</button>
+        <button class="secondary" id="scrollToMemories">See our memories</button>
+      </div>
+    </div>
   </header>
-  
-  <section class="hero">
-    <img src="2tj.png" alt="Tendo's photo" />
-    <h2>Hi, I’m Tendo</h2>
-    <p>A passionate web designer and developer from Uganda. I create stunning, functional websites that leave a mark.</p>
+
+  <!-- REVEAL MESSAGE -->
+  <section>
+    <div class="card reveal">
+      
+      <div class="scramble" id="scramble">Tendo + Swabs = ALWAYS</div>
+      <p style="max-width:72ch; color:var(--muted)">
+        From the first smile to every little laugh. This page is a tiny piece of how big love time grows.
+      </p>
+      <div class="cta">
+        <button class="primary" id="showModal">Read full note</button>
+        <button class="secondary" id="copyLink">Copy this link</button>
+      </div>
+    </div>
   </section>
 
-  <section class="services">
-    <h2 class="section-title">Services</h2>
-    <ul class="service-list">
-      <li>Website Design</li>
-      <li>Responsive Development</li>
-      <li>E-commerce Stores</li>
-      <li>SEO Optimization</li>
-      <li>Portfolio & Resume Sites</li>
-      <li>Interactive UI/UX</li>
-      <li>Graphics</li>
-    </ul>
+  <!-- GALLERY -->
+  <section id="memories">
+    <h2 style="margin:0 0 16px">Little Memories, Big Feelings</h2>
+    <div class="grid">
+      <figure class="g-item tall"><img class="tall" src="swabs1.jpg" alt="City lights placeholder"><figcaption class="tag">Angel</figcaption></figure>
+      <!-- <figure class="g-item wide"><img class="wide" src="swabs1.jpg" alt="Sunset date placeholder"><figcaption class="tag">Sunset walks</figcaption></figure> -->
+      <figure class="g-item"><img src="tj2.jpg" alt="Coffee date placeholder"><figcaption class="tag">no face</figcaption></figure>
+      <figure class="g-item tall"><img class="tall" src="tendo2.jpg" alt="City lights placeholder"><figcaption class="tag">Eyes</figcaption></figure>
+      <figure class="g-item"><img src="tb1.jpg" alt="Road trip placeholder"><figcaption class="tag">ooops</figcaption></figure>
+      <figure class="g-item wide"><img class="wide" src="b.jpg" alt="Stargazing placeholder"><figcaption class="tag">Mummy Yakirah</figcaption></figure>
+      <figure class="g-item"><img src="pro.jpg" alt="Laughing together placeholder"><figcaption class="tag">#</figcaption></figure>
+    </div>
   </section>
 
-  <section class="projects">
-    <h2 class="section-title">Featured Projects</h2>
-    <ul class="service-list">
-      <li>Prom Network Website</li>
-      <li>The Eagle by Richie 256</li>
-      <li>School Results System</li>
-      <li>Birthday Greeting Pages</li>
-    </ul>
-  </section>
-
-  <div class="mine">
-    <h3>We Build The Future</h3>
-    <p>Your idea, our technology.</p>
-  </div>
-
-  <section class="contact">
-    <h2 class="section-title">Contact Me</h2>
-    <form action="https://formspree.io/f/xqapnljg" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+  <!-- COUNTDOWN -->
+  <section>
+    <div class="card">
+      <h2 style="margin:0 0 10px">Countdown to Yakirah's BD</h2>
+      <!-- <p style="margin:0 18px 18px 0; color:var(--muted)">Edit the date in the code (search for <code>SPECIAL_DATE</code>), e.g. your anniversary.</p> -->
+      <div class="countdown" id="countdown">
+        <div class="unit"><div class="num" id="d">00</div><div class="label">Days</div></div>
+        <div class="unit"><div class="num" id="h">00</div><div class="label">Hours</div></div>
+        <div class="unit"><div class="num" id="m">00</div><div class="label">Minutes</div></div>
+        <div class="unit"><div class="num" id="s">00</div><div class="label">Seconds</div></div>
+      </div>
+    </div>
   </section>
 
   <footer>
-    <p>&copy; 2025 TendoS Tech. Designed with 💛 in Uganda.</p>
+    Made with ❤️ by Tendo — Swabs. <br/>
   </footer>
 
-  <!-- particles.js library -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <!-- MODAL CONTENT -->
+  <div class="modal" id="modal">
+    <div class="panel">
+      <button class="close" id="closeModal">Close</button>
+      <h3>Dear Swabs,</h3>
+      <p>
+        Please allow this our memorystorage feel free to send some pics for storage.Dont forget that we both see 
+        the images saved here so we can share memories and a 
+        unique gallary. And You’re my favorite human. Your kindness, your laugh, the way you light up a room — I notice it all.
+        I’m grateful for you. Thank you for choosing me too. Here’s to many more shared sunsets, inside jokes, and dreams we’ll build together.
+      </p>
+      <p><strong>Always, Tendo.</strong></p>
+    </div>
+  </div>
+
+  <!-- AUDIO (user can replace the src with their own mp3 link) -->
+  <audio id="song" preload="auto">
+    <!-- Replace with your own song link -->
+    <source src="" type="audio/mpeg" />
+  </audio>
+
   <script>
-    particlesJS("particles-js", {
-      "particles": {
-        "number": {
-          "value": 70
-        },
-        "color": {
-          "value": "#ffffff"
-        },
-        "shape": {
-          "type": "circle"
-        },
-        "opacity": {
-          "value": 0.3
-        },
-        "size": {
-          "value": 3
-        },
-        "line_linked": {
-          "enable": true,
-          "distance": 120,
-          "color": "#ffffff",
-          "opacity": 0.2,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 1.5
-        }
+    // ==== CONFIG — EDIT THESE TO PERSONALIZE ====
+    const RECIPIENT_NAME = 'Swabs';
+    const SPECIAL_DATE = '2026-08-09T00:00:00'; // YYYY-MM-DDTHH:mm:ss (anniversary, birthday, etc.)
+    const LOVE_LINES = [
+      'Every beat of my heart spells your name…',
+      'I will keep choosing you in every timeline.',
+      'You are my calm and my excitement.',
+      'Home is any place I find your smile.'
+    ];
+    // ============================================
+
+    // Navbar buttons
+    const playBtn = document.getElementById('playBtn');
+    const revealBtn = document.getElementById('revealBtn');
+    const song = document.getElementById('song');
+
+    playBtn.addEventListener('click', async () => {
+      try{
+        if(song.paused){ await song.play(); playBtn.textContent = 'Pause song'; }
+        else { song.pause(); playBtn.textContent = 'Play song'; }
+      }catch(err){
+        alert('Add a song link in the code (look for the <audio> tag).');
       }
+    });
+    revealBtn.addEventListener('click', () => document.getElementById('modal').classList.add('active'));
+
+    // Modal controls
+    document.getElementById('showModal').addEventListener('click', ()=> document.getElementById('modal').classList.add('active'));
+    document.getElementById('closeModal').addEventListener('click', ()=> document.getElementById('modal').classList.remove('active'));
+    document.getElementById('modal').addEventListener('click', (e)=>{ if(e.target.id==='modal') e.currentTarget.classList.remove('active'); });
+
+    // Smooth scroll
+    document.getElementById('scrollToMemories').addEventListener('click', ()=> document.getElementById('memories').scrollIntoView({behavior:'smooth'}));
+
+    // Copy link
+    document.getElementById('copyLink').addEventListener('click', async ()=>{
+      try{ await navigator.clipboard.writeText(location.href); alert('Link copied!'); }catch{ alert('Could not copy link.'); }
+    });
+
+    // Typewriter rotating lines
+    const tw = document.getElementById('typewriter');
+    let i = 0, char = 0, deleting = false;
+    function type(){
+      const line = LOVE_LINES[i % LOVE_LINES.length];
+      if(!deleting){
+        tw.textContent = line.slice(0, ++char);
+        if(char === line.length){ deleting = true; setTimeout(type, 1400); return; }
+      } else {
+        tw.textContent = line.slice(0, --char);
+        if(char === 0){ deleting = false; i++; }
+      }
+      setTimeout(type, deleting ? 30 : 50);
+    }
+    type();
+
+    // Scramble effect
+    const chars = "IloveSwabs.Tendo❤";
+    const scr = document.getElementById('scramble');
+    let target = `TENDO + ${RECIPIENT_NAME.toUpperCase()} = ALWAYS`;
+    let frame = 0, scrambling = false;
+    function scrambleTo(newText){
+      target = newText; frame = 0; if(scrambling) return; scrambling = true;
+      const int = setInterval(()=>{
+        frame++;
+        const revealed = Math.min(target.length, Math.floor(frame/2));
+        scr.textContent = target.split('').map((ch, idx)=> idx < revealed ? ch : chars[Math.floor(Math.random()*chars.length)]).join('');
+        if(revealed >= target.length){ clearInterval(int); scrambling = false; }
+      }, 30);
+    }
+    setInterval(()=> scrambleTo(`TENDO + ${RECIPIENT_NAME.toUpperCase()} = ALWAYS`), 6000);
+
+    // Countdown
+    const dEl = document.getElementById('d');
+const hEl = document.getElementById('h');
+const mEl = document.getElementById('m');
+const sEl = document.getElementById('s');
+
+// Set the special date to 9th August
+const SPECIAL = '2026-08-09T00:00:00'; // You can change the time if needed
+
+function tick() {
+  const now = new Date();
+  const end = new Date(SPECIAL_DATE);
+  const diff = Math.max(0, end - now);
+
+  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const h = Math.floor(diff / (1000 * 60 * 60)) % 24;
+  const m = Math.floor(diff / (1000 * 60)) % 60;
+  const s = Math.floor(diff / 1000) % 60;
+
+  dEl.textContent = String(d).padStart(2,'0');
+  hEl.textContent = String(h).padStart(2,'0');
+  mEl.textContent = String(m).padStart(2,'0');
+  sEl.textContent = String(s).padStart(2,'0');
+}
+
+// Update every second
+setInterval(tick, 1000);
+tick(); // Run immediately on load
+
+    tick(); setInterval(tick, 1000);
+
+    // Click/tap hearts
+    function spawnHeart(x,y){
+      const el = document.createElement('div');
+      el.className = 'heart';
+      el.style.left = x+'px'; el.style.top = y+'px';
+      el.style.background = 'transparent';
+      el.style.setProperty('--accent', `hsl(${Math.floor(330+Math.random()*30)}, 100%, 50%)`);
+      document.body.appendChild(el);
+      const dx = (Math.random()-0.5) * 2; // drift
+      let yv = -1 - Math.random()*1.5; // rise
+      let life = 0;
+      const int = setInterval(()=>{
+        life+=1; x += dx; y += yv; el.style.transform = `translate(${x}px, ${y}px) rotate(25deg)`;
+        el.style.opacity = String(1 - life/120);
+        if(life>120){ clearInterval(int); el.remove(); }
+      }, 16);
+    }
+    document.getElementById('spawnHearts').addEventListener('click', (e)=>{
+      const rect = e.currentTarget.getBoundingClientRect();
+      spawnHeart(rect.left + rect.width/2, rect.top);
+      for(let i=0;i<10;i++) setTimeout(()=> spawnHeart(innerWidth*Math.random(), innerHeight*(.25 + Math.random()*0.5)), i*40);
+    });
+    document.addEventListener('click', (e)=>{
+      if(e.target.closest('.btn, .primary, .secondary, .close')) return; // avoid clutter on controls
+      spawnHeart(e.clientX, e.clientY);
     });
   </script>
 </body>
